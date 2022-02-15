@@ -17,12 +17,10 @@ fun main() {
     //testaLacos()
 
 
-    var contaVinicius = Conta()
-    contaVinicius.setTitular("Vinicius")
+    var contaVinicius = Conta("Vinicius", 1225)
     contaVinicius.deposita(680.0)
 
-    var contaDavi = Conta()
-    contaDavi.setTitular("Davi")
+    var contaDavi = Conta("Davi", 1224)
 
     println("Saldo Conta Vinicius = ${contaVinicius.getSaldo()}")
     println("Saldo Conta Vinicius = ${contaDavi.getSaldo()}")
@@ -37,10 +35,15 @@ fun main() {
 
 }
 
-class Conta {
-    private var titular: String = ""
-    private var numero: Int = 0
+class Conta (titular: String, numero: Int){
+    private var titular: String = titular
+    private var numero: Int = numero
     private var saldo: Double = 0.0
+
+/*    constructor(titular: String, numero: Int){
+        this.titular = titular
+        this.numero = numero
+    }*/
 
 
     fun deposita(valor: Double) {
