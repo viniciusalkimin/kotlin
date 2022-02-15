@@ -1,7 +1,9 @@
+import java.awt.Container
+
 fun main() {
     println("Hello Kotlin");
 
-    val titular: String = "Vinicius"
+/*    val titular: String = "Vinicius"
     val conta: Int = 1234
     var saldo: Double = 0.0
     saldo -= 15.0
@@ -9,22 +11,32 @@ fun main() {
 
     println("Titular = $titular")
     println("Conta = $conta")
-    println("Saldo = $saldo")
+    println("Saldo = $saldo")*/
 
-    testCondicoes(saldo)
-    testaLacos()
-
-    val contaVinicius = Conta()
+    //testCondicoes(saldo)
+    //testaLacos()
 
 
+    var contaVinicius = Conta()
+    contaVinicius.titular = "Vinicius"
+    contaVinicius.deposita(680.0)
+
+    println("Saldo Conta Vinicius = ${contaVinicius.saldo}")
+
+}
 class Conta{
-    val titular: String = ""
-    var numero = 0
-    var saldo = 0.0
+    var titular: String = ""
+    var numero: Int = 0
+    var saldo: Double = 0.0
+
+
+    fun deposita( valor: Double){
+       saldo += valor
+    }
     }
 
 
-}
+
 
 fun testCondicoes(saldo: Double) {
     if (saldo > 0.0) {
@@ -44,7 +56,7 @@ fun testCondicoes(saldo: Double) {
 
 }
 
-fun testaLacos() {}
+fun testaLacos() {
 //cria 5 contas
 for (i in 1..5) {
     println(i)
@@ -58,6 +70,6 @@ for (i in 5 downTo 1) {
 //cria 3 contas de 2 em 2
 for (i in 1..5 step 2) {
     println(i)
-}
+}}
 
 
