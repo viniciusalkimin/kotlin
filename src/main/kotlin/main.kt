@@ -18,20 +18,29 @@ fun main() {
 
 
     var contaVinicius = Conta()
-    contaVinicius.titular = "Vinicius"
+    contaVinicius.setTitular("Vinicius")
     contaVinicius.deposita(680.0)
 
-    println("Saldo Conta Vinicius = ${contaVinicius.saldo}")
+    var contaDavi = Conta()
+    contaDavi.setTitular("Davi")
 
-    contaVinicius.sacar(50.0)
-    println("Saldo depois do saque é = ${contaVinicius.saldo}")
+    println("Saldo Conta Vinicius = ${contaVinicius.getSaldo()}")
+    println("Saldo Conta Vinicius = ${contaDavi.getSaldo()}")
+
+    contaVinicius.sacar(750.0)
+    println("Saldo da Conta Vinicius depois do saque é = ${contaVinicius.getSaldo()}")
+
+    contaVinicius.transferir(contaDavi, 100.00)
+
+    println("Saldo da conta do Vinicius = ${contaVinicius.getSaldo()}")
+    println("Saldo da conta do Vinicius = ${contaDavi.getSaldo()}")
 
 }
 
 class Conta {
-    var titular: String = ""
-    var numero: Int = 0
-    var saldo: Double = 0.0
+    private var titular: String = ""
+    private var numero: Int = 0
+    private var saldo: Double = 0.0
 
 
     fun deposita(valor: Double) {
@@ -44,6 +53,37 @@ class Conta {
         } else {
             saldo -= valor
         }
+    }
+
+    fun transferir(contaDestino: Conta, valor: Double): Boolean {
+        if (valor > saldo) {
+            println("Não é possível fazer o saque, saldo insuficiente")
+            return false
+        } else {
+            saldo -= valor
+            contaDestino.deposita(valor)
+            return true
+        }
+    }
+
+    fun getSaldo(): Double {
+        return saldo
+    }
+
+    fun setTitular(nome: String) {
+        this.titular = nome
+    }
+
+    fun getTitular(): String {
+        return titular
+    }
+
+    fun setNumero(novoNumero: Int) {
+        this.numero = novoNumero
+    }
+
+    fun getNumero(): Int {
+        return numero
     }
 }
 
